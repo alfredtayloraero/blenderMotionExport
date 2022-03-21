@@ -2,6 +2,8 @@
 
 # Blender Motion Tracking Addon 1.1
 # © Simon Reichel 24/02/2020
+# Patched by Alfie Taylor 21/03/2022 (Thanks Simon!)
+
 
 import os
 import numpy as np
@@ -65,7 +67,7 @@ class ExportMarkerPanel(bpy.types.Panel):
             col.label("Marker distance:")
             col.label("{0:.2f} ({1:.2f}, {2:.2f})".format(fulldistance, x, y))
         else:
-            col.label("Select two markers to show distance.")
+            col.label(text="Select two markers to show distance.")
 
 
 class ExportTrackingPanel(bpy.types.Panel):
@@ -149,7 +151,7 @@ class ExportDataPanel(bpy.types.Panel):
         layout = self.layout
 
         col = layout.column(align=True)
-        col.label("Export Path:")
+        col.label(text="Export Path:")
         col.prop(context.scene, "exp_path", text="")
         col.separator()
         col.prop(context.scene, "exp_subdirs")
@@ -159,9 +161,9 @@ class ExportDataPanel(bpy.types.Panel):
         col.prop(context.scene, "frame_end")
         col.operator("scene.fullcliprange")
         col.separator()
-        col.label("Export markers:")
+        col.label(text="Export markers:")
         row = col.row(align=True)
-        row.operator("scene.export_marker", text="Selected").selected_only = True
+        row.operator("scene.export_marker", text="Selected")
         row.operator("scene.export_marker", text="All")
 
 
